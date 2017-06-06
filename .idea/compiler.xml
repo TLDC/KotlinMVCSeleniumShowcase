@@ -11,8 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="kotlin-mvc" target="1.5" />
-      <module name="KotlinMVCSeleniumShowcase" target="1.5" />
+      <module name="kotlin-mvc" target="1.8" />
+      <module name="KotlinMVCSeleniumShowcase" target="1.8" />
       <module name="selenium-bdd" target="1.8" />
     </bytecodeTargetLevel>
   </component>

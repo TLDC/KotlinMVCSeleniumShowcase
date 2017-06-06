@@ -9,9 +9,9 @@
 <title>Kotlin MVC Project</title>
 </head>
 <body>
-<h1>File <c:if test="${!response.success}">NOT</c:if> uploaded successfully</h1>
+<h1 id="response">File <c:if test="${!response.success}">NOT</c:if> uploaded successfully</h1>
 <br>
-<c:if test="${!response.success}">Error message: ${response.errorMsg}</c:if>
+<p id="error"><c:if test="${!response.success}">Error message: ${response.errorMsg}</c:if></p>
 <c:if test="${response.success}"><img src="${response.location}"/></c:if>
 
 </body>

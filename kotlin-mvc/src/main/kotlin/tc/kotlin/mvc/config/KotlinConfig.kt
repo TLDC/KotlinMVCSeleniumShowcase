@@ -27,7 +27,7 @@ class KotlinConfig : WebMvcConfigurerAdapter() {
 
     /*
         KOTLIN NOTE: Unlike Java, in Kotlin there are no static methods. Generally it is recommended
-        to use package-level functions instead (see comment above). If you need to have a function that can be called
+        to use package-level functions instead. If you need to have a function that can be called
         without having an instance of the class you can put it in an object declaration in the class.
         Furthermore, if you put this function inside a companion object declaration then the same
         syntax for calling static methods in Java can be used. (i.e. the function below can be called

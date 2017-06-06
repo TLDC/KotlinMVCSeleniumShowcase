@@ -19,7 +19,7 @@ public class FormView {
     private final FormContainer formContainer;
 
     /**
-     * Initialse web elements using current web driver
+     * Initialise web elements using current web driver
      *
      * @param browserDriver
      */

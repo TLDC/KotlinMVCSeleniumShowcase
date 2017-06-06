@@ -12,9 +12,9 @@
 
 	<form action="${pageContext.request.contextPath}/upload" method="POST" enctype="multipart/form-data">
 		<p>
-			File: <input type="file" name="file" multiple="true" />
+			File: <input type="file" id="file" name="file" multiple="true" />
 		</p>
-		<input type="submit" value="Upload It" />
+		<input type="submit" value="Upload It" id="upload"/>
 	</form>
 
 

@@ -1,7 +1,9 @@
 package tc.selenium.utils;
 
+import tc.selenium.views.FileUploadView;
 import tc.selenium.views.FormView;
 import tc.selenium.views.SummaryView;
+import tc.selenium.views.UploadedView;
 
 /**
  * Actions that can be performed on available views.
@@ -26,6 +28,16 @@ public class Navigation {
     protected SummaryView summaryView;
 
     /**
+     * Contains actions which can be performed on the file upload view
+     */
+    protected FileUploadView fileUploadView;
+
+    /**
+     * Contains actions which can be performed on the uploaded view
+     */
+    protected UploadedView uploadedView;
+
+    /**
      * Uses given web driver to initialise form view and summary view and create Navigation object.
      * @param browserDriver
      */
@@ -33,6 +45,33 @@ public class Navigation {
         this.browserDriver = browserDriver;
         formView = new FormView(browserDriver);
         summaryView = new SummaryView(browserDriver);
+        fileUploadView = new FileUploadView(browserDriver);
+        uploadedView = new UploadedView(browserDriver);
+    }
+
+    /**
+     * Upload a file
+     * @param filePath
+     */
+    public void uploadFile(String filePath) {
+        fileUploadView.uploadFile(filePath);
+        fileUploadView.submit();
+    }
+
+    /**
+     * Assert upload displays correct screen
+     */
+    public void uploadedScreenIsShown(UploadedView.UploadResponse resp) {
+        switch (resp) {
+            case SUCCESS:
+                uploadedView.assertResponse(UploadedView.UploadResponse.SUCCESS);
+                uploadedView.assertNoError();
+                break;
+            case FAILURE:
+                uploadedView.assertResponse(UploadedView.UploadResponse.FAILURE);
+                uploadedView.assertError("Error message: Uploaded file was not an image");
+                break;
+        }
     }
 
     /**
@@ -70,6 +109,15 @@ public class Navigation {
     public void summaryScreenIsShown(String name, int age, String gender, String height, boolean confirmed) {
         summaryView.isDisplayedCheck();
         summaryView.assertAllValues(name, convertAge(age), gender, Double.parseDouble(height), confirmed);
+    }
+
+    /**
+     * Navigates to a given URL
+     *
+     * @param url
+     */
+    public void loadPage(String url) {
+        browserDriver.getCurrentDriver().get(url);
     }
 
     /**

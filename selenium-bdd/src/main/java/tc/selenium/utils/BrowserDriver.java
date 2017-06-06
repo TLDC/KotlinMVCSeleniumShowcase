@@ -20,15 +20,11 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class BrowserDriver {
 
-    private static WebDriver webDriver;
+    private WebDriver webDriver;
 
     public enum Browser {IE, CHROME, FIREFOX};
 
-    private static final String TEST_URL =
-            (System.getProperty("test.url.and.context") == null ? "http://localhost:8080/kotlin-mvc/manosMaker"
-                    : System.getProperty("test.url.and.context"));
-
-    private static final Browser BROWSER = System.getProperty("test.browser") == null ? Browser.IE : Browser.valueOf(System.getProperty("test.browser"));
+    private static final Browser BROWSER = System.getProperty("test.browser") == null ? Browser.CHROME : Browser.valueOf(System.getProperty("test.browser"));
 
     public void createBrowserDriver() {
         try {
@@ -53,8 +49,7 @@ public class BrowserDriver {
                     webDriver = new FirefoxDriver();
                     break;
             }
-            webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            webDriver.get(TEST_URL);
+            webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } catch (URISyntaxException e) {
             throw new IllegalStateException("Cannot find IE driver");
         }
@@ -62,10 +57,6 @@ public class BrowserDriver {
 
     public WebDriver getCurrentDriver() {
         return webDriver;
-    }
-
-    public void loadStartingPage() {
-        webDriver.get(TEST_URL);
     }
 
     public void close() {

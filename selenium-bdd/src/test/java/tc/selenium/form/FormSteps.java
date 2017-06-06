@@ -1,4 +1,4 @@
-package tc.selenium.steps;
+package tc.selenium.form;
 
 import cucumber.api.DataTable;
 import cucumber.api.java8.En;
@@ -44,6 +44,9 @@ public class FormSteps implements En {
         Before(body -> {
             driver.createBrowserDriver();
             navigation = new Navigation(driver);
+        });
+        Given("^the form page is visited", () -> {
+            navigation.loadPage("http://localhost:8080/kotlin-mvc/manosMaker");
         });
         Given("^the user completed the form with the following data$", (DataTable formData) -> {
             List<String> dataRow = formData.getGherkinRows().get(1).getCells();
